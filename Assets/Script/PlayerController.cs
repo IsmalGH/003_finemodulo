@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] [Range(0, 10)] int speed = 5;
-    [SerializeField] [Range(0, 10)] float Jump = 5;
+    [SerializeField] [Range(0, 30)] float Jump = 5;
+    [SerializeField] [Range(0, 1)] float AirTime = 1f;
     [SerializeField] Rigidbody2D Body;
     [SerializeField] LayerMask GroundMask;
+    [SerializeField] Transform GroundTouch;
+    bool isGrounded,isJumping;
+    float AirTimeCounter,Y;
 
 
 
@@ -24,17 +28,26 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float xMove = Input.GetAxisRaw("Horizontal");
-        Vector2 PlayerMovement = Vector2.right * xMove * speed;
-        PlayerMovement.y = Body.velocity.y;
-        if (Input.GetButtonDown("Jump") && Physics2D.Raycast(transform.position, -transform.up, 1.2f, GroundMask))
+        Vector2 PlayerMovement = new Vector2(xMove * speed, Body.velocity.y);
+        isGrounded = Physics2D.OverlapBox(GroundTouch.position, new Vector2(0.98f, 0.1f),0, GroundMask);
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            PlayerMovement.y += Mathf.Sqrt(Jump * -2f * (-9.81f));
+            Y = Mathf.Sqrt(Jump * 2f * 9.8f);
+            AirTimeCounter = AirTime;
+            PlayerMovement.y = Y;
+            isJumping = true;
         }
-        Debug.DrawRay(transform.position, -transform.up * 1.2f, Color.red);
-        
-
-
-
+        if (Input.GetButton("Jump") && AirTimeCounter > 0 && isJumping)
+        {
+            PlayerMovement.y = Y;
+            AirTimeCounter -= Time.deltaTime;
+        }
+        else
+            isJumping = false;
+        if (Input.GetButtonUp("Jump"))
+            isJumping = false;
+        Debug.DrawRay(GroundTouch.position, -transform.up * 0.01f, Color.red);
 
 
 
