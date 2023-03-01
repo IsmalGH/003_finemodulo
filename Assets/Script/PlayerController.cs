@@ -47,8 +47,6 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         if (Input.GetButtonUp("Jump"))
             isJumping = false;
-        Debug.DrawRay(GroundTouch.position, -transform.up * 0.01f, Color.red);
-
 
 
 
