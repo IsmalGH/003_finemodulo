@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 30)] float Jump = 5;
     [SerializeField] [Range(0, 1)] float AirTime = 1f;
     [SerializeField] Rigidbody2D Body;
-    [SerializeField] LayerMask GroundMask;
-    [SerializeField] Transform GroundTouch;
-    bool isGrounded,isJumping;
-    float AirTimeCounter,Y;
+    [SerializeField] LayerMask GroundMask,EnemyMask;
+    [SerializeField] Transform GroundTouch,actualSpawn;
+    [SerializeField] int Life,ActualLife,InvulnerabilityTime;
+    GameObject Spawn;
+    bool isGrounded,isJumping,isInvulnerable;
+    float AirTimeCounter,Y,timer=0;
 
 
 
@@ -19,9 +21,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Spawn = GameObject.Find("FirstSpawn");
         Body = GetComponent<Rigidbody2D>();
-
+        actualSpawn = Spawn.transform;
+        ActualLife = Life;
+        isInvulnerable = false;
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class PlayerController : MonoBehaviour
         Vector2 PlayerMovement = new Vector2(xMove * speed, Body.velocity.y);
         isGrounded = Physics2D.OverlapBox(GroundTouch.position, new Vector2(0.98f, 0.1f),0, GroundMask);
 
+        //Gestione del jump dinamico
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Y = Mathf.Sqrt(Jump * 2f * 9.8f);
@@ -48,10 +53,50 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
             isJumping = false;
 
+        //Controllo Morte
+        if (ActualLife == 0)
+        {
+            ActualLife = Life;
+            transform.position = actualSpawn.position;
+        }
 
-
+        //Controllo invulnerabilità
+        if (isInvulnerable && timer < InvulnerabilityTime)
+        {
+            timer += Time.deltaTime;
+            if (timer >= InvulnerabilityTime)
+            {
+                isInvulnerable = false;
+                timer = 0;
+            }
+                
+        }
+            
+        //Assegnazione velocità
         Body.velocity = PlayerMovement;
         
 
     }
+ 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Enemy") && !isInvulnerable)
+        {
+            ActualLife--;
+            Debug.Log("Contatto");
+            isInvulnerable = true;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Enemy") && !isInvulnerable)
+        {
+            ActualLife--;
+            Debug.Log("Contatto");
+            isInvulnerable = true;
+        }
+    }
+
 }
