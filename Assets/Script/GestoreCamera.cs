@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GestoreCamera : MonoBehaviour
 {
-    [SerializeField] Cinemachine.CinemachineVirtualCamera Camera;
+    [SerializeField] public GameObject Camera;
+    [SerializeField] public bool state;
+    [SerializeField] Transform Player,Spawn1,Spawn2;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +22,15 @@ public class GestoreCamera : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Player"))
         {
-            Camera.enabled = true;
-            Camera.Priority = 21;
+            Camera.SetActive(state);
+            if (!state)
+                Player.position = Spawn1.position;
+            else
+                Player.position = Spawn2.position;
+            state = !state;
         }
             
     }

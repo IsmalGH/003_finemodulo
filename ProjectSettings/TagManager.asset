@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Platform
+  - Spawn
+  - Spike
+  - TempSpawn
   layers:
   - Default
   - TransparentFX

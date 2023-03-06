@@ -9,10 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 1)] float AirTime = 1f;
     [SerializeField] Rigidbody2D Body;
     [SerializeField] LayerMask GroundMask,EnemyMask;
-    [SerializeField] Transform GroundTouch,actualSpawn;
-    [SerializeField] int Life,ActualLife,InvulnerabilityTime;
+    [SerializeField] Transform GroundTouch,actualSpawn, temporarySpawn;
+    [SerializeField] public int Life,ActualLife,InvulnerabilityTime;
     GameObject Spawn;
     bool isGrounded,isJumping,isInvulnerable;
+    public bool haveSword = false;
     float AirTimeCounter,Y,timer=0;
 
 
@@ -96,6 +97,19 @@ public class PlayerController : MonoBehaviour
             ActualLife--;
             Debug.Log("Contatto");
             isInvulnerable = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TempSpawn"))
+        {
+            temporarySpawn = collision.transform;
+        }
+        if (collision.CompareTag("Spike"))
+        {
+            ActualLife--;
+            transform.position = temporarySpawn.position;
         }
     }
 
