@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public int Life,ActualLife,InvulnerabilityTime;
     GameObject Spawn;
     bool isGrounded,isJumping,isInvulnerable;
-    public bool haveSword = false;
     float AirTimeCounter,Y,timer=0;
 
 

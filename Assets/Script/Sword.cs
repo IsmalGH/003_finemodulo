@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
 
-    [SerializeField] PlayerController Controller;
+    [SerializeField] PlayerAttack Controller;
     [SerializeField] bool ActiveInteraction = false;
 
     // Start is called before the first frame update
