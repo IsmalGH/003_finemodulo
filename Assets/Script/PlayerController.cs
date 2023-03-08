@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 30)] float Jump = 5;
     [SerializeField] [Range(0, 1)] float AirTime = 1f;
     [SerializeField] Rigidbody2D Body;
-    [SerializeField] LayerMask GroundMask,EnemyMask;
-    [SerializeField] Transform GroundTouch,actualSpawn, temporarySpawn;
+    [SerializeField] LayerMask GroundMask;
+    [SerializeField] public Transform GroundTouch,actualSpawn, temporarySpawn;
     [SerializeField] public int Life,ActualLife,InvulnerabilityTime;
     GameObject Spawn;
     bool isGrounded,isJumping,isInvulnerable;
@@ -71,7 +71,8 @@ public class PlayerController : MonoBehaviour
             }
                 
         }
-            
+
+
         //Assegnazione velocità
         Body.velocity = PlayerMovement;
         
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Enemy") && !isInvulnerable)
+       if(collision.transform.CompareTag("Enemy") && !isInvulnerable)
         {
             ActualLife--;
             Debug.Log("Contatto");

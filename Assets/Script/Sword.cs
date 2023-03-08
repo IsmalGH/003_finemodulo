@@ -5,7 +5,9 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
 
-    [SerializeField] PlayerAttack Controller;
+    [SerializeField] PlayerAttack Attack;
+    [SerializeField] PlayerController Controller;
+    [SerializeField] GameObject Porta1, porta2;
     [SerializeField] bool ActiveInteraction = false;
 
     // Start is called before the first frame update
@@ -19,8 +21,11 @@ public class Sword : MonoBehaviour
     {
         if (ActiveInteraction && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Controller.haveSword = true;
-            Destroy(this.gameObject);
+            Attack.haveSword = true;
+            gameObject.SetActive(false);
+            Porta1.SetActive(true);
+            porta2.SetActive(false);
+            Controller.actualSpawn = transform;
         }
             
     }

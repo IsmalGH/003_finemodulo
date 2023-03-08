@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float Health;
+    [SerializeField] GameObject Drop;
     public float CurrentHealt;
 
     // Start is called before the first frame update
@@ -18,6 +19,11 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (CurrentHealt <= 0)
-            Destroy(this.gameObject);
+        {
+            gameObject.SetActive(false);
+            if (Drop != null)
+                Drop.SetActive(true);
+        }
+            
     }
 }

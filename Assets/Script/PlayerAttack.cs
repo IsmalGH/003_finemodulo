@@ -24,13 +24,13 @@ public class PlayerAttack : MonoBehaviour
     {
 
         Debug.Log(AttackPos.transform.localPosition);
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
             AttackPos.transform.localPosition = new Vector2(1, 0);
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
             AttackPos.transform.localPosition = new Vector2(-1, 0);
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
             AttackPos.transform.localPosition = new Vector2(0, 1);
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
             AttackPos.transform.localPosition = new Vector2(0, -1);
 
 

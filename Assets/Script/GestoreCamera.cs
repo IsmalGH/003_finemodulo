@@ -25,13 +25,13 @@ public class GestoreCamera : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Camera.SetActive(state);
+            Camera.SetActive(state); 
             if (!state)
                 Player.position = Spawn1.position;
             else
                 Player.position = Spawn2.position;
             state = !state;
         }
-            
+
     }
 }
