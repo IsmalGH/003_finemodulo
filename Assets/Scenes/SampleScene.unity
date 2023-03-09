@@ -1383,7 +1383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510463478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.44308472, y: -14.153397, z: -136.66852}
+  m_LocalPosition: {x: -95, y: 15, z: -136.66852}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1470509364}
@@ -2371,8 +2371,8 @@ GameObject:
   - component: {fileID: 651328674}
   - component: {fileID: 651328673}
   - component: {fileID: 651328672}
-  - component: {fileID: 651328671}
   - component: {fileID: 651328670}
+  - component: {fileID: 651328675}
   m_Layer: 7
   m_Name: EnemyBase (1)
   m_TagString: Enemy
@@ -2395,25 +2395,6 @@ MonoBehaviour:
   Health: 6
   Drop: {fileID: 1880397573}
   CurrentHealt: 0
---- !u!114 &651328671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651328669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b309aee537d4c38449afe3972da2c362, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  Body: {fileID: 0}
-  forward: {fileID: 2027311686}
-  back: {fileID: 1489303281}
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!58 &651328672
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2468,6 +2449,21 @@ Transform:
   m_Father: {fileID: 2120819780}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651328675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651328669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7dfa49b1a69b424f8fcab1a0c77f1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: {fileID: 0}
+  Porta1: {fileID: 2046369492}
+  Porta2: {fileID: 298176988}
 --- !u!1 &662263872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,7 +2880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2969,8 +2965,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e116f38fd6ee8b41b2a178edf03bf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   Jump: 5
+  DashForce: 5
+  speed: 5
+  DashLenght: 0.12
   AirTime: 0.3
   Body: {fileID: 0}
   GroundMask:
@@ -2982,6 +2980,8 @@ MonoBehaviour:
   Life: 3
   ActualLife: 0
   InvulnerabilityTime: 1
+  DashLimit: 1
+  haveDash: 0
 --- !u!61 &790607706
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3006,7 +3006,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99, y: 0.99}
+  m_Size: {x: 0.97, y: 0.97}
   m_EdgeRadius: 0
 --- !u!50 &790607707
 Rigidbody2D:
@@ -3048,9 +3048,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78.93, y: 17.349998}
+  m_AnchoredPosition: {x: -78.49899, y: 17.349998}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.50381017, y: 0.5}
 --- !u!222 &790607709
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3854,7 +3854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178532835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.518578, y: 13, z: -6.859438}
+  m_LocalPosition: {x: -11.15789, y: 13, z: -7.018689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1424885859}
@@ -4338,7 +4338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415685765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8199987, y: 0.9699993, z: 9.203288}
+  m_LocalPosition: {x: -1.9, y: 1, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1947388727}
@@ -4390,7 +4390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1807042560}
-  m_PathPosition: 0.81405896
+  m_PathPosition: 0.79813397
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -4470,7 +4470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435065631}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 17.308, y: 8.81, z: 0}
+  m_LocalPosition: {x: 17.019, y: 8.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1849777788}
@@ -4492,7 +4492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 1178532835}
   state: 0
-  Player: {fileID: 790607708}
+  Player: {fileID: 790607705}
   Spawn1: {fileID: 1849777788}
   Spawn2: {fileID: 1374307317}
 --- !u!61 &1435065634
@@ -4882,8 +4882,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528461055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.971765, y: 4.1774893, z: 45.563854}
-  m_LocalScale: {x: 15.204645, y: 1, z: 1}
+  m_LocalPosition: {x: -5.97289, y: 4.16349, z: 45.563854}
+  m_LocalScale: {x: 15.206925, y: 0.972, z: 1}
   m_Children: []
   m_Father: {fileID: 1007007841}
   m_RootOrder: 2
@@ -5536,6 +5536,7 @@ GameObject:
   - component: {fileID: 1880397577}
   - component: {fileID: 1880397576}
   - component: {fileID: 1880397575}
+  - component: {fileID: 1880397578}
   m_Layer: 0
   m_Name: Drop
   m_TagString: Untagged
@@ -5645,6 +5646,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1880397578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880397573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30a7009b04b8a948a8ad3d9494b2f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 790607705}
 --- !u!1 &1884755886
 GameObject:
   m_ObjectHideFlags: 0
@@ -6249,7 +6263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 922663130}
   state: 0
-  Player: {fileID: 790607708}
+  Player: {fileID: 790607705}
   Spawn1: {fileID: 1415685766}
   Spawn2: {fileID: 521423484}
 --- !u!1 &2027311685

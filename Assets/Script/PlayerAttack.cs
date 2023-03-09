@@ -23,7 +23,6 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(AttackPos.transform.localPosition);
         if (Input.GetKeyDown(KeyCode.RightArrow))
             AttackPos.transform.localPosition = new Vector2(1, 0);
         if (Input.GetKeyDown(KeyCode.LeftArrow))

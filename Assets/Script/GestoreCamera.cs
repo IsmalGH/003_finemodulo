@@ -6,12 +6,14 @@ public class GestoreCamera : MonoBehaviour
 {
     [SerializeField] public GameObject Camera;
     [SerializeField] public bool state;
-    [SerializeField] Transform Player,Spawn1,Spawn2;
+    [SerializeField] PlayerController Player;
+    [SerializeField] Transform Spawn1,Spawn2;
+    float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = 0;
     }
 
     // Update is called once per frame
@@ -25,12 +27,20 @@ public class GestoreCamera : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Camera.SetActive(state); 
+            Camera.SetActive(state);
             if (!state)
-                Player.position = Spawn1.position;
+                Player.transform.position = Spawn1.position;
             else
-                Player.position = Spawn2.position;
+                Player.transform.position = Spawn2.position;
             state = !state;
+            if (timer < 0.5f)
+            {
+                timer += Time.deltaTime;
+                Player.Body.velocity = Vector2.zero;
+            }
+            else
+                timer = 0;
+            
         }
 
     }
