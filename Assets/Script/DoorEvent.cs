@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DoorEvent : MonoBehaviour
 {
-    [SerializeField] EnemyHealth Health;
-    [SerializeField] GameObject Porta1, Porta2;
-
+    [SerializeField] GameObject Porta1, Porta2,Nemico;
+    [SerializeField] PlayerController Player;
+    private EnemyHealth Health;
     // Start is called before the first frame update
     void Start()
     {
-        Health = gameObject.GetComponent<EnemyHealth>();
+        Health = Nemico.GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class DoorEvent : MonoBehaviour
         {
             Porta1.SetActive(true);
             Porta2.SetActive(false);
+            Player.actualSpawn = transform;
         }
     }
 }

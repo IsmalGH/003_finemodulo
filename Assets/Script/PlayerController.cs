@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask GroundMask;
     [SerializeField] public Transform GroundTouch, actualSpawn, temporarySpawn;
     [SerializeField] public int Life, ActualLife, InvulnerabilityTime, DashLimit;
+    [SerializeField] GameObject Messaggio;
     GameObject Spawn;
     bool isGrounded, isJumping, isInvulnerable,isDashing;
     public bool haveDash;
     int DashCounter,direction;
-    float AirTimeCounter, Y, timer = 0,td=0;
+    float AirTimeCounter, Y, timer = 0,td=0,textTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -110,7 +111,16 @@ public class PlayerController : MonoBehaviour
             td = 0;
             DashCounter = 0;
         }
-            
+        
+        
+        if (haveDash && textTimer <= 3f)
+        {
+            Messaggio.SetActive(true);
+            textTimer += Time.deltaTime;
+        }
+        else if (textTimer >= 3f)
+            Messaggio.SetActive(false);
+
 
     }
 

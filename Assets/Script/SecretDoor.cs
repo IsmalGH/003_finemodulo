@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Sword : MonoBehaviour
+public class SecretDoor : MonoBehaviour
 {
-
-    [SerializeField] PlayerAttack Attack;
-    [SerializeField] PlayerController Controller;
-    [SerializeField] GameObject Porta1, porta2;
-    [SerializeField] bool ActiveInteraction = false;
-
+    [SerializeField] GameObject Porta;
+    private bool ActiveInteraction=false;
+    private SpriteRenderer Colore;
+    private BoxCollider2D collisore;
     // Start is called before the first frame update
     void Start()
     {
-
+        Colore = Porta.GetComponent<SpriteRenderer>();
+        collisore = Porta.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -22,13 +20,9 @@ public class Sword : MonoBehaviour
     {
         if (ActiveInteraction && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Attack.haveSword = true;
-            gameObject.SetActive(false);
-            Porta1.SetActive(true);
-            porta2.SetActive(false);
-            Controller.actualSpawn = transform;
+            Colore.color = Color.gray;
+            collisore.enabled = false;
         }
-            
     }
 
 

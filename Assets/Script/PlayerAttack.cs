@@ -7,9 +7,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float Range, Damage;
     [SerializeField] LayerMask AttackLayer;
     [SerializeField] GameObject AttackPos;
+    [SerializeField] GameObject Messaggio;
     public bool haveSword = false;
     private RaycastHit2D[] hits;
-    private float AnimTimer;
+    private float AnimTimer,textTimer;
     bool isAttacking=false;
 
     // Start is called before the first frame update
@@ -51,6 +52,15 @@ public class PlayerAttack : MonoBehaviour
             }
 
         }
+
+        if (haveSword && textTimer <= 3f)
+        {
+            Messaggio.SetActive(true);
+            textTimer += Time.deltaTime;
+        }
+        else if (textTimer >= 3f)
+            Messaggio.SetActive(false);
+
             
 
     }
