@@ -21,4 +21,8 @@ Note:
   
     Rettangolo Giallo - Spada
   
+  
     Al grosso nemico rosso non è stata implementata alcuna AI.
+    
+    
+    Per finire il gioco, bisogna distruggere la grossa porta grigia all'inizio con gli attacchi e attraversarla.
